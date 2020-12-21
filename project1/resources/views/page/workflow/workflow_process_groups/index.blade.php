@@ -1,5 +1,5 @@
 @extends('page.workflow.layout')
-@section('title','Tác giả')
+@section('title','Workflow Process Groups')
 @section('admin_content')
 
 <div id="main-content">
@@ -11,7 +11,7 @@
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{route('Workflow_processes_index')}}">Workflow Process Groups</a></li>
-                           
+
                             </ol>
                         </nav>
                     </div>
@@ -56,23 +56,24 @@
 
                                         </tr>
                                     </thead>
-                                  
-                                    <tbody>
 
+                                    <tbody>
+                                        @foreach($colection as $col)
 
                                         <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td>{{$col->id}}</td>
+                                            <td>{{$col->name}}</td>
+                                            <td>{{$col->status}}</td>
+                                            <td>{{$col->ordering}}</td>
 
                                             <td colspan="2">
-                                                <a href="" style="padding-right: 30px;"><i class="fa fa-pencil"></i></a>
+                                                <a href="{{ route('Workflow_processes_group_edit',['id'=>$col->id]) }}" style="padding-right: 30px;"><i class="fa fa-pencil"></i></a>
 
-                                                <a href=""><i class="fa fa-trash-o fa-fw"></i></a>
+                                                <a href="{{ route('Workflow_processes_group_delete',['id'=>$col->id]) }}"><i class="fa fa-trash-o fa-fw"></i></a>
                                             </td>
                                         </tr>
 
-
+                                        @endforeach
 
                                     </tbody>
                                 </table>

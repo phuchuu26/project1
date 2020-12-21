@@ -32,7 +32,7 @@
                 <a href="#uiIcons" class="has-arrow"><i class="icon-speedometer"></i><span>Workflow</span></a>
                 <ul>
                     <li><a href="{{route('Workflow_processes_index')}}"> Workflow Processes</a></li>
-                    <li><a href="{{route('Workflow_processes_group_create')}}"> Workflow Processes Groups</a></li>
+                    <li><a href="{{route('Workflow_processes_group_index')}}"> Workflow Processes Groups</a></li>
                 </ul>
             </li>
 
@@ -44,9 +44,9 @@
                 </ul>
             </li> -->
 
-    
 
-        
+
+
 
     </ul>
 </nav>

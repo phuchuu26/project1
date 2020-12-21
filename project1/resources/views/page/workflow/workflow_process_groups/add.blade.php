@@ -63,8 +63,27 @@
                                     <div class="input-group-prepend">
                                         <label class="input-group-text" for="inputGroupSelect01">Status</label>
                                     </div>
+                                    <select class="custom-select a" id="danhmuc" name="status">
+                                            <option>-----Code-------</option>
 
-                                    <input type="text" name="status" class="form-control" required>
+                                            
+                                                <option value="100">100</option>
+                                                <option value="101">101</option>
+                                                <option value="200">200</option>
+                                                <option value="201">201</option>
+                                                <option value="202">202</option>
+                                                <option value="203">203</option>
+                                                <option value="204">204</option>
+                                                <option value="205">205</option>
+                                                <option value="206">206</option>
+                                                <option value="300">300</option>
+                                                <option value="305">305</option>
+                                                <option value="400">400</option>
+                                                <option value="403">403</option>
+                                                <option value="404">404</option>
+
+                                        </select>
+                                    <!-- <input type="number" name="status" class="form-control" required> -->
 
                                 </div>
                                 <div class="input-group mb-3 col-md-3 ">
@@ -73,7 +92,7 @@
                                         <label class="input-group-text" for="inputGroupSelect01">Ordering</label>
                                     </div>
 
-                                    <input type="text" name="ordering" class="form-control" required>
+                                    <input type="number" name="ordering" class="form-control" required>
 
                                 </div>
 

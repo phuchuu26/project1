@@ -1,5 +1,5 @@
-@extends('admin.layout')
-@section('title','Sữa tác giả')
+@extends('page.workflow.layout')
+@section('title','Edit Workflow Processes Group')
 <head>
     <style>
         select#inputGroupSelect01 {
@@ -33,8 +33,11 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="header">
-                            <h2>Edit</h2>
+                            <h2>Edit Workflow Processes Group</h2>
                         </div>
+                        <button type="submit" style="float: right;" class="btn btn-success">
+                            <a style="color:white" href="{{ route('Workflow_processes_group_index') }}">    Back</a>
+                            </button>
 
                         @if(count($errors) > 0)
                             <div class="alert alert-danger">
@@ -46,23 +49,55 @@
 
 
                         <div class="body">
-                            <form id="basic-form" novalidate  method="POST"  action="{{Route('auth.post.edit',['id' => $author->id])}}" enctype="multipart/form-data"> {{ csrf_field() }}
+                            <form id="basic-form" novalidate  method="POST"  action="{{Route('Workflow_processes_group_update',['id' => $colection->id])}}" enctype="multipart/form-data"> {{ csrf_field() }}
 
 
 
-                                <div class="input-group mb-3 ">
+                                <div class="input-group mb-3 col-md-3 ">
 
                                     <div class="input-group-prepend">
-                                        <label class="input-group-text" for="inputGroupSelect01">Tên tác giả</label>
+                                        <label class="input-group-text" for="inputGroupSelect01">Name Workflow</label>
                                     </div>
 
-                                    <input type="text" name="name" value="{{$author->author_name}}" class="form-control" required>
+                                    <input type="text" value="{{ $colection->name }}" name="name" class="form-control" required>
 
                                 </div>
+                                <div class="input-group mb-3 col-md-3 ">
 
-                                <div class="form-group">
-                                    <label>Ghi chú</label>
-                                    <textarea type="text"  id="editor" name="note" class="form-control" value="{{$author->author_info}}" required>{{$author->author_info}}</textarea>
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="inputGroupSelect01">Status</label>
+                                    </div>
+                                    <select class="custom-select a" id="danhmuc" name="status">
+                                            <option value="{{ $colection->status }}"> {{ $colection->status }}</option>
+
+
+                                                <option value="100">100</option>
+                                                <option value="101">101</option>
+                                                <option value="200">200</option>
+                                                <option value="201">201</option>
+                                                <option value="202">202</option>
+                                                <option value="203">203</option>
+                                                <option value="204">204</option>
+                                                <option value="205">205</option>
+                                                <option value="206">206</option>
+                                                <option value="300">300</option>
+                                                <option value="305">305</option>
+                                                <option value="400">400</option>
+                                                <option value="403">403</option>
+                                                <option value="404">404</option>
+
+                                        </select>
+                                    <!-- <input type="number" name="status" class="form-control" required> -->
+
+                                </div>
+                                <div class="input-group mb-3 col-md-3 ">
+
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="inputGroupSelect01">Ordering</label>
+                                    </div>
+
+                                    <input type="number" value="{{ $colection->ordering }}" name="ordering" class="form-control" required>
+
                                 </div>
 
 
@@ -77,7 +112,7 @@
                                 </div> --}}
 
                                 <br>
-                                <button type="submit" class="btn btn-success">Thêm</button>
+                                <button type="submit" class="btn btn-success">Update</button>
                             </form>
                         </div>
                     </div>

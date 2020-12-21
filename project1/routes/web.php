@@ -28,12 +28,12 @@ Route::group(['prefix' => 'workflow_processes'],function(){
 
 	Route::get('/','App\Http\Controllers\Workflow_processesController@index')->name('Workflow_processes_index');
 	Route::get('/add','App\Http\Controllers\Workflow_processesController@create')->name('Workflow_processes_create');
-	Route::post('/store','Workflow_processesController@store')->name('Workflow_processes_store');
+	Route::post('/store','App\Http\Controllers\Workflow_processesController@store')->name('Workflow_processes_store');
 
-	Route::get('/edit','Workflow_processesController@edit')->name('Workflow_processes_edit');
-	Route::post('/update','Workflow_processesController@update')->name('Workflow_processes_update');
+	Route::get('/edit/{id}','App\Http\Controllers\Workflow_processesController@edit')->name('Workflow_processes_edit');
+	Route::post('/update/{id}','App\Http\Controllers\Workflow_processesController@update')->name('Workflow_processes_update');
 
-    Route::get('/delete-{id}','Workflow_processesController@delete')->name('Workflow_processes_delete');
+    Route::get('/delete-{id}','App\Http\Controllers\Workflow_processesController@delete')->name('Workflow_processes_delete');
 	// Route::get('/checkout','Workflow_processesController@checkout')->name('checkout');
 
 
@@ -46,10 +46,10 @@ Route::group(['prefix' => 'workflow_processes_group'],function(){
 	Route::get('/add','App\Http\Controllers\Workflow_processes_GroupController@create')->name('Workflow_processes_group_create');
 	Route::post('/store','App\Http\Controllers\Workflow_processes_GroupController@store')->name('Workflow_processes_group_store');
 
-	Route::get('/edit','Workflow_processesController@edit')->name('Workflow_processes_edit');
-	Route::post('/update','Workflow_processesController@update')->name('Workflow_processes_update');
+	Route::get('/edit/{id}','App\Http\Controllers\Workflow_processes_GroupController@edit')->name('Workflow_processes_group_edit');
+	Route::post('/updated/{id}','App\Http\Controllers\Workflow_processes_GroupController@update')->name('Workflow_processes_group_update');
 
-    Route::get('/delete-{id}','Workflow_processesController@delete')->name('Workflow_processes_delete');
+    Route::get('/delete-{id}','App\Http\Controllers\Workflow_processes_GroupController@delete')->name('Workflow_processes_group_delete');
 	// Route::get('/checkout','Workflow_processesController@checkout')->name('checkout');
 
 

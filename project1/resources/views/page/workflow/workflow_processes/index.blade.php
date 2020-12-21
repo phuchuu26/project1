@@ -1,5 +1,5 @@
 @extends('page.workflow.layout')
-@section('title','Tác giả')
+@section('title','Workflow Processes Group')
 @section('admin_content')
 
 <div id="main-content">
@@ -7,11 +7,11 @@
             <div class="block-header">
                 <div class="row clearfix">
                     <div class="col-md-6 col-sm-12">
-                        <h1>Tác giả</h1>
+                        <h1>Workflow Processes</h1>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{route('Workflow_processes_index')}}">workflow_processes</a></li>
-                           
+                                <li class="breadcrumb-item"><a href="{{route('Workflow_processes_index')}}">Workflow Processes</a></li>
+
                             </ol>
                         </nav>
                     </div>
@@ -49,38 +49,38 @@
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Tác giả</th>
-                                            <th>Ghi chú</th>
+                                            <th>Type Id</th>
+                                            <th>Name</th>
 
-                                            <th>Thao tác</th>
+                                            <th>Code</th>
+                                            <th>Status</th>
+                                            <th>Content Type Id</th>
+                                            <th>Ordering</th>
+                                            <th>Group ID</th>
+                                            <th>Function</th>
 
                                         </tr>
                                     </thead>
-                                    {{-- <tfoot>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Tác giả</th>
-                                            <th>Ghi chú</th>
-
-                                            <th>Thao tác</th>
-
-                                        </tr>
-                                    </tfoot> --}}
                                     <tbody>
-
-
+                                        {{-- {{ dd($colection) }} --}}
+                                        @foreach($colection as $col)
                                         <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td>{{ $col->id }}</td>
+                                            <td>{{ $col->type_id }}</td>
+                                            <td>{{ $col->name }}</td>
+                                            <td>{{ $col->code }}</td>
+                                            <td>{{ $col->status }}</td>
+                                            <td>{{ $col->content_type_id }}</td>
+                                            <td>{{ $col->ordering }}</td>
+                                            <td>{{ $col->getGroup  ? $col->getGroup->name : ''}}</td>
 
                                             <td colspan="2">
-                                                <a href="" style="padding-right: 30px;"><i class="fa fa-pencil"></i></a>
+                                                <a href="{{ route('Workflow_processes_edit',['id' => $col->id]) }}" style="padding-right: 30px;"><i class="fa fa-pencil"></i></a>
 
-                                                <a href=""><i class="fa fa-trash-o fa-fw"></i></a>
+                                                <a href="{{ route('Workflow_processes_delete',['id'=>$col->id]) }}"><i class="fa fa-trash-o fa-fw"></i></a>
                                             </td>
                                         </tr>
-
+                                        @endforeach
 
 
                                     </tbody>
