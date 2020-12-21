@@ -51,7 +51,7 @@ class Workflow_processes_GroupController extends Controller
     }
 
     public function delete($id){
-        $bookcompany = Workflow_process_groups::destroy($id);
+        $workflow_delete = Workflow_process_groups::destroy($id);
         return redirect()->back();
     }
 }

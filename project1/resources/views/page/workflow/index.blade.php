@@ -110,7 +110,7 @@ small.text-muted {
                     </div>
                 </div>
 
-             
+
     <script src="{{asset('public/admin/toastr/jquery.min.js')}}"></script>
 
 @endsection
