@@ -12,17 +12,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::prefix('workflow')->group(function() {
-    Route::get('/', 'WorkflowController@index')->name('Workflow_processes_group_index');
+    Route::get('/', 'WorkflowProcessGroupsController@index')->name('Workflow_processes_group_index');
 
 
     // Route::get('/','WorkflowController@index')
-	Route::get('/add','WorkflowController@create')->name('Workflow_processes_group_create');
-	Route::post('/store','WorkflowController@store')->name('Workflow_processes_group_store');
+	Route::get('/add','WorkflowProcessGroupsController@create')->name('Workflow_processes_group_create');
+	Route::post('/store','WorkflowProcessGroupsController@store')->name('Workflow_processes_group_store');
 
-	Route::get('/edit/{id}','WorkflowController@edit')->name('Workflow_processes_group_edit');
-	Route::post('/updated/{id}','WorkflowController@update')->name('Workflow_processes_group_update');
+	Route::get('/edit/{id}','WorkflowProcessGroupsController@edit')->name('Workflow_processes_group_edit');
+	Route::post('/updated/{id}','WorkflowProcessGroupsController@update')->name('Workflow_processes_group_update');
 
-    Route::get('/delete-{id}','WorkflowController@delete')->name('Workflow_processes_group_delete');
+    Route::get('/delete-{id}','WorkflowProcessGroupsController@destroy')->name('Workflow_processes_group_delete');
 });
 
 Route::group(['prefix' => 'workflow_processes'],function(){
@@ -34,7 +34,7 @@ Route::group(['prefix' => 'workflow_processes'],function(){
 	Route::get('/edit/{id}','WorkflowProcessController@edit')->name('Workflow_processes_edit');
 	Route::post('/update/{id}','WorkflowProcessController@update')->name('Workflow_processes_update');
 
-    Route::get('/delete-{id}','WorkflowProcessController@delete')->name('Workflow_processes_delete');
+    Route::get('/delete-{id}','WorkflowProcessController@destroy')->name('Workflow_processes_delete');
 
 
 });

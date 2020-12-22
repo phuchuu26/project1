@@ -103,7 +103,8 @@
 
 
                                 <br>
-                                <button type="submit" class="btn btn-success">Thêm</button>
+                                <button type="button" class="btn btn-success">{{  Form::submit('Thêm') }}</button>
+
                             </form>
                         </div>
                     </div>

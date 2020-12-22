@@ -5,12 +5,19 @@ namespace Modules\Workflow\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Modules\Workflow\Entities\WorkflowProcessGroups;
-// use Modules\Core\Entities\Role
-// C:\xampp\htdocs\project1\project1\project1\Modules\Workflow\Entities\WorkflowProcessGroups.php
+// use Modules\Workflow\Entities\WorkflowProcessGroups;
+use Modules\Workflow\Services\WorkflowProcessGroupService;
+// use Modules\Workflow\Repositories\WorkflowProcessGroupsRepositories;
 
-class WorkflowController extends Controller
+class WorkflowProcessGroupsController extends Controller
 {
+    protected $workflow_Process_Group_Service;
+    public function __construct(WorkflowProcessGroupService $ser){
+
+        $this->workflow_Process_Group_Service = $ser ;
+
+    }
+
     /**
      * Display a listing of the resource.
      * @return Renderable
@@ -18,7 +25,8 @@ class WorkflowController extends Controller
     public function index()
     {
         // return view('workflow::index');
-        $colection = WorkflowProcessGroups::all();
+        $colection = $this->workflow_Process_Group_Service->index();
+        // dd($colection);
         return view('workflow::workflow_process_group.index',compact('colection'));
     }
 
@@ -39,16 +47,16 @@ class WorkflowController extends Controller
     public function store(Request $request)
     {
         //
-        $collection = new WorkflowProcessGroups;
-        $collection->name  = $request->name;
-        $collection->status  = $request->status;
-        $collection->ordering  = $request->ordering;
+        // $collection = new WorkflowProcessGroups;
+        // $collection->name  = $request->name;
+        // $collection->status  = $request->status;
+        // $collection->ordering  = $request->ordering;
 
 
-        // dd($collection);
-        // die;
-        $collection->save();
-
+        // // dd($collection);
+        // // die;
+        // $collection->save();
+        $colection = $this->workflow_Process_Group_Service->store($request);
 
         return redirect()->route('Workflow_processes_group_index');
     }
@@ -70,7 +78,7 @@ class WorkflowController extends Controller
      */
     public function edit($id)
     {
-        $colection = WorkflowProcessGroups::findorFail($id);
+        $colection =   $colection = $this->workflow_Process_Group_Service->edit($id);
 
         return view('workflow::workflow_process_group.edit',compact('colection'));
     }
@@ -84,12 +92,15 @@ class WorkflowController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $workflow_process_group = WorkflowProcessGroups::findorFail($id);
-        $workflow_process_group->name = $request->name;
-        $workflow_process_group->status = $request->status;
-        $workflow_process_group->ordering = $request->ordering;
-        $workflow_process_group->save();
-        return redirect()->back();
+
+        // $workflow_process_group = WorkflowProcessGroups::findorFail($id);
+        // $workflow_process_group->name = $request->name;
+        // $workflow_process_group->status = $request->status;
+        // $workflow_process_group->ordering = $request->ordering;
+        // $workflow_process_group->save();
+        // return redirect()->back();
+        $colection = $this->workflow_Process_Group_Service->update($request,$id);
+        return redirect()->route('Workflow_processes_group_index');
     }
 
     /**
@@ -100,7 +111,8 @@ class WorkflowController extends Controller
     public function destroy($id)
     {
         //
-        $workflow_delete = WorkflowProcessGroups::destroy($id);
+
+        $workflow_delete = $this->workflow_Process_Group_Service->destroy($id);
         return redirect()->back();
     }
 }

@@ -19,6 +19,6 @@ class WorkflowProcess extends Model
     protected $table = 'workflow_processes';
     public $timestamps = false;
     public function getGroup(){
-        return $this->belongsTo('Modules\Workflow\Entities\WorkflowProcessGroups','group_id','id');
+        return $this->belongsTo('Modules\Workflow\Entities\WorkflowProcess','group_id','id');
     }
 }

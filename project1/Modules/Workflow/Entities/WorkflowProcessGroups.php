@@ -7,9 +7,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class WorkflowProcessGroups extends Model
 {
-    use HasFactory;
 
-    protected $fillable = [];
+    use HasFactory;
+    protected $guarded = array();
+    // protected $fillable = [];
 
     protected static function newFactory()
     {
@@ -19,4 +20,9 @@ class WorkflowProcessGroups extends Model
     public $connection = 'pgsql';
     protected $table = 'workflow_process_groups';
     public $timestamps = false;
+    // protected $filable = [
+    //     'name',
+    //     'status',
+    //     'ordering'
+    // ];
 }

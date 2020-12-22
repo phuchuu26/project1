@@ -5,8 +5,10 @@ namespace Modules\Workflow\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Modules\Workflow\Entities\WorkflowProcess;
-use Modules\Workflow\Entities\WorkflowProcessGroups;
+// use Modules\Workflow\Entities\WorkflowProcess;
+// use Modules\Workflow\Entities\WorkflowProcessGroups;
+use Modules\Workflow\Services\WorkflowProcessService;
+use Modules\Workflow\Services\WorkflowProcessGroupService;
 
 class WorkflowProcessController extends Controller
 {
@@ -14,10 +16,19 @@ class WorkflowProcessController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
+    protected $workflow_Process_Service;
+    protected $workflow_Process_Group_Service;
+    public function __construct(WorkflowProcessService $ser, WorkflowProcessGroupService $ser1)
+    {
+        $this->workflow_Process_Service = $ser;
+        $this->workflow_Process_Group_Service = $ser1;
+    }
     public function index()
     {
-        $group = WorkflowProcessGroups::all();
-        $colection = WorkflowProcess::all();
+        $collection = $this->workflow_Process_Service->index();
+        // dd($collection);
+        $group = $collection[0];
+        $colection = $collection[1];
         return view('workflow::workflow_process.index',compact('group','colection'));
     }
 
@@ -27,7 +38,7 @@ class WorkflowProcessController extends Controller
      */
     public function create()
     {
-        $group = WorkflowProcessGroups::all();
+        $group = $this->workflow_Process_Group_Service->index();
         return view('workflow::workflow_process.add',compact('group'));
     }
 
