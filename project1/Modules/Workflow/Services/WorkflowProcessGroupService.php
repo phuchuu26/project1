@@ -5,13 +5,18 @@ use Modules\Workflow\Repositories\WorkflowProcessGroupsRepositories;
 
 class WorkflowProcessGroupService
 {
-    protected $workflow_Process_Groups_Repositories;
-    public function __construct(WorkflowProcessGroupsRepositories $wfgr){
-        $this->workflow_Process_Groups_Repositories = $wfgr;
+    // protected $workflow_Process_Groups_Repositories = new WorkflowProcessGroupsRepositories() ;
+    protected $workflow_Process_Groups_Repositories ;
+    public function __construct(){
+        $this->workflow_Process_Groups_Repositories = new WorkflowProcessGroupsRepositories() ;
     }
+    // public function __construct(WorkflowProcessGroupsRepositories $wfgr){
+    //     $this->workflow_Process_Groups_Repositories = $wfgr;
+    // }
 
     public function index(){
         $colection = $this->workflow_Process_Groups_Repositories->all();
+        // dd($colection);
         return $colection;
     }
 

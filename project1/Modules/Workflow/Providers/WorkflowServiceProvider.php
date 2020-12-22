@@ -5,6 +5,7 @@ namespace Modules\Workflow\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
 use File;
+use Config;
 class WorkflowServiceProvider extends ServiceProvider
 {
     /**

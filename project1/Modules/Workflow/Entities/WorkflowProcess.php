@@ -9,7 +9,7 @@ class WorkflowProcess extends Model
 {
     use HasFactory;
 
-    protected $fillable = [];
+    protected $guarded = array();
 
     protected static function newFactory()
     {

@@ -14,7 +14,8 @@ class WorkflowProcessGroupsController extends Controller
     protected $workflow_Process_Group_Service;
     public function __construct(WorkflowProcessGroupService $ser){
 
-        $this->workflow_Process_Group_Service = $ser ;
+        // $this->workflow_Process_Group_Service = $ser ;
+        $this->workflow_Process_Group_Service = new WorkflowProcessGroupService();
 
     }
 

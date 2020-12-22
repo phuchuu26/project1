@@ -35,6 +35,7 @@ class WorkflowProcessRepositories{
     public function update($request, $id){
 
         $collection = $this->find($id);
+
         $collection->fill($request->all());
         $collection->save();
         // dd($collection);
@@ -49,6 +50,7 @@ class WorkflowProcessRepositories{
     }
 
     public function destroy($id){
+
         $workflow_delete = WorkflowProcess::destroy($id);
     }
 }

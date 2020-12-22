@@ -35,7 +35,8 @@ class WorkflowProcessService
     }
 
     public function edit($id){
-    $colection = $this->workflow_Process_Repositories->find($id);
+        $colection[] = $this->workflow_Process_Repositories->find($id);
+         array_push($colection,  $this->workflow_Process_Groups_Repositories->all() );
         return $colection;
     }
 

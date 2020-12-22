@@ -16,10 +16,12 @@ class WorkflowProcessController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
+    // public $test = new WorkflowProcessService();
     protected $workflow_Process_Service;
     protected $workflow_Process_Group_Service;
     public function __construct(WorkflowProcessService $ser, WorkflowProcessGroupService $ser1)
     {
+
         $this->workflow_Process_Service = $ser;
         $this->workflow_Process_Group_Service = $ser1;
     }
@@ -27,8 +29,8 @@ class WorkflowProcessController extends Controller
     {
         $collection = $this->workflow_Process_Service->index();
         // dd($collection);
-        $group = $collection[0];
-        $colection = $collection[1];
+        $group = $collection[1];
+        $colection = $collection[0];
         return view('workflow::workflow_process.index',compact('group','colection'));
     }
 
@@ -49,20 +51,8 @@ class WorkflowProcessController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $new = new WorkflowProcess;
-        // $new->id = 1;
-        $new->type_id = $request->type_id;
-        $new->name = $request->name;
-        $new->code = $request->code;
-        $new->status = $request->status;
-        $new->content_type_id = $request->content_type_id;
-        $new->ordering = $request->ordering;
-        $new->group_id = $request->group_id;
 
-        // dd($new);
-        // die;
-        $new->save();
+        $group = $this->workflow_Process_Service->store($request);
         return redirect()->route('Workflow_processes_index');
     }
 
@@ -83,8 +73,10 @@ class WorkflowProcessController extends Controller
      */
     public function edit($id)
     {
-        $group = WorkflowProcessGroups::all();
-        $workflow_process = WorkflowProcess::findorFail($id);
+       $data = $this->workflow_Process_Service->edit($id);
+       $group = $data[1];
+       $workflow_process = $data[0];
+    //    dd($group);
         return view('workflow::workflow_process.edit',compact('group','workflow_process'));
     }
 
@@ -97,15 +89,15 @@ class WorkflowProcessController extends Controller
     public function update(Request $req, $id)
     {
         //
-        $workflow_process = WorkflowProcess::find($id);
+        $workflow_process = $this->workflow_Process_Service->update($req,$id);
         // dd($workflow_process);
-        $workflow_process->type_id = $req->type_id;
-        $workflow_process->name = $req->name;
-        $workflow_process->code = $req->code;
-        $workflow_process->status = $req->status;
-        $workflow_process->content_type_id = $req->content_type_id;
-        $workflow_process->ordering = $req->ordering;
-        $workflow_process->group_id = $req->group_id;
+        // $workflow_process = $this->workflow_Process_Service->update($req,$id);
+        // $workflow_process->name = $req->name;
+        // $workflow_process->code = $req->code;
+        // $workflow_process->status = $req->status;
+        // $workflow_process->content_type_id = $req->content_type_id;
+        // $workflow_process->ordering = $req->ordering;
+        // $workflow_process->group_id = $req->group_id;
 
         $workflow_process->save();
         return redirect()->back();
@@ -119,7 +111,7 @@ class WorkflowProcessController extends Controller
      */
     public function destroy($id)
     {
-        $workflow_process = WorkflowProcess::destroy($id);
+        $workflow_process = $this->workflow_Process_Service->destroy($id);
         return redirect()->back();
         //
     }
